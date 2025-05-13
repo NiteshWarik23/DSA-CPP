@@ -10,6 +10,11 @@
 #include <vector>
 #include <utility> // for pair
 #include <iterator> // for iterator
+#include <list> // for list
+#include <deque> // for deque
+#include <stack> // for stack
+#include <queue> // for queue
+#include <set> // for set
 using namespace std;
 
 //Functions
@@ -191,5 +196,207 @@ void explainVector(){
     v.erase(v.begin() + 1, v.begin() + 3); // Deleting the elements from index 1 to index 3 from the vector.
     //{10,50}
 
+    // {10,12,20,23,35}
+    v.erase(v.begin() + 2, v.begin() + 4); // Deleting the elements from index 2 to index 4 from the vector.
+    //{10,12,35}
+
+
+    //Insert Function
+    //insert() function is used to insert the element in the vector.
+    vector<int> v5(2,100);
+    v.insert(v.begin(), 200); // Inserting the element at the beginning of the vector.
+    v.insert(v.begin() + 1, 2 ,10); // Inserting the element at index 1 of the vector. 
+
+    vector<int> copy(2,50);
+    v.insert(v.begin(), copy.begin(),copy.end()); // Inserting the elements of the vector copy at the beginning of the vector v.
+    //{50,50,200,10,10,100,100}
+    //The insert() function can also be used to insert the elements of the vector at the end of the vector.
+    v.insert(v.end(), copy.begin(),copy.end()); // Inserting the elements of the vector copy at the end of the vector v.
+    //{50,50,200,10,10,100,100,50,50}
+
+    //Size of vector
+    cout << "Size of vector v:" << v.size() << endl; // 9
+    cout << "Capacity of vector v:" << v.capacity() << endl; // 9
+
+
+    //Pop Back Function
+    v.pop_back(); // Deleting the last element of the vector.
+
+    //Swap Function
+    //v1 ->   {10,20};
+    //v2 ->  {30,40};
+
+    v1.swap(v2); // Swapping the elements of the vector v1 and v2.
+    //v1 ->  {30,40};
+    //v2 -> {10,20};
+
+    //Clear Function
+    v.clear(); // Deleting all the elements of the vector.
+
+    // Empty Function
+
+    cout << v.empty() << endl; // 1 // The empty() function returns true if the vector is empty else false.
+    cout << v1.empty() << endl; //0 // The empty() function returns true if the vector is empty else false.
+
+}
+
+
+void explainList(){
+    //List is a sequence container that allows non-contiguous memory allocation. It is defined in the <list> header file.
+    //List is a doubly linked list that allows non-contiguous memory allocation. It is similar to vector but has the following advantages over vector:
+    //1. List can grow and shrink in size dynamically.
+    //2. List can be used to insert and delete elements from the middle of the list.
+    //3. List can be used to insert and delete elements from the beginning and end of the list.
+
+
+    list<int> l; // Declaration of list
+
+    l.push_back(1); // Adding element to the list
+    l.push_front(2); // Adding element to the front of the list
+    l.emplace_back(3); // Adding element to the list
+    l.emplace_front(4); // Adding element to the front of the list
+    
+    //rest functions same as vector
+    // begin(), end(), rbegin(), rend(), clear(), insert(), size(), swap() etc
+}
+
+
+void explainDeque(){
+    //Deque is a sequence container that allows non-contiguous memory allocation. It is defined in the <deque> header file.
+    //Deque is a double-ended queue that allows non-contiguous memory allocation. It is similar to vector but has the following advantages over vector:
+    //1. Deque can grow and shrink in size dynamically.
+    //2. Deque can be used to insert and delete elements from the middle of the deque.
+    //3. Deque can be used to insert and delete elements from the beginning and end of the deque.
+
+    deque<int> dq; // Declaration of deque
+    dq.push_back(1); // Adding element to the deque
+    dq.push_front(2); // Adding element to the front of the deque
+    dq.emplace_back(3); // Adding element to the deque
+    dq.emplace_front(4); // Adding element to the front of the deque
+
+    dq.pop_back(); //Deleting the last element of the deque
+    dq.pop_front(); // Deleting the first element of the deque
+
+    dq.back(); // Returns the last element of the deque
+    dq.front(); // Returns the first element of the deque
+    dq.at(0); // Returns the element at the given index of the deque
+
+    // rest functions same as vector
+    //  begin(), end(), rbegin(), rend(), clear(), insert(), size(), swap() etc
+}
+
+// LIFO - Last In First Out
+// Time Complexity of Stack is O(1) for all operations.
+void explainStack(){
+    //Stack is a container adapter that provides a LIFO (last in first out) data structure. It is defined in the <stack> header file.
+    //Stack is a container adapter that provides a LIFO (last in first out) data structure. It is similar to deque but has the following advantages over deque:
+    //1. Stack can grow and shrink in size dynamically.
+    //2. Stack can be used to insert and delete elements from the top of the stack.
+    //3. Stack can be used to insert and delete elements from the bottom of the stack.
+
+    stack<int> s; // Declaration of stack
+    s.push(1); // Adding element to the stack {1}
+    s.push(2); // Adding element to the stack {2,1}
+    s.push(3); // Adding element to the stack {3,2,1}
+    s.push(4); // Adding element to the stack {4,3,2,1}
+    s.emplace(5); // Adding element to the stack {5,4,3,2,1}
+
+    cout << s.top() << endl; // Returns the top element of the stack
+    s.pop(); // Deleting the top element of the stack
+
+    cout << s.top();
+
+    cout << s.size() << endl; // Returns the size of the stack
+
+    cout << s.empty() << endl; // Returns true if the stack is empty else false
+
+    stack<int> s1,s2;
+    s1.swap(s2); // Swapping the elements of the stack s1 and s2.
+}
+
+// FIFO - First In First Out
+void explainQueue(){
+    //Queue is a container adapter that provides a FIFO (first in first out) data structure. It is defined in the <queue> header file.
+    //Queue is a container adapter that provides a FIFO (first in first out) data structure. It is similar to deque but has the following advantages over deque:
+    //1. Queue can grow and shrink in size dynamically.
+    //2. Queue can be used to insert and delete elements from the front of the queue.
+    //3. Queue can be used to insert and delete elements from the back of the queue.
+
+    queue<int> q; // Declaration of queue
+    q.push(1); // Adding element to the queue {1}
+    q.push(2); // Adding element to the queue {2,1}
+    q.push(3); // Adding element to the queue {3,2,1}
+    q.push(4); // Adding element to the queue {4,3,2,1}
+    q.emplace(5); // Adding element to the queue {5,4,3,2,1}
+
+    q.back() += 5; // Adding 5 to the back element of the queue
+
+    cout << q.front() << endl; // Returns the front element of the queue
+    cout << q.back() << endl; // Returns the back element of the queue
+
+    q.pop(); // Deleting the front element of the queue
+
+    cout << q.size() << endl; // Returns the size of the queue
+
+    cout << q.empty() << endl; // Returns true if the queue is empty else false
+}
+
+
+// In PQ the max / largest value of any datatype is at the top of the queue.
+// Time Complexity of Priority Queue Fuctions
+// 1. push() - O(log n)
+// 2. pop() - O(log n)
+// 3. top() - O(1)
+// 4. size() - O(1)
+void explainPriorityQueue(){
+    //Priority Queue is a container adapter that provides a FIFO (first in first out) data structure. It is defined in the <queue> header file.
+    //Priority Queue is a container adapter that provides a FIFO (first in first out) data structure. It is similar to queue but has the following advantages over queue:
+    //1. Priority Queue can grow and shrink in size dynamically.
+    //2. Priority Queue can be used to insert and delete elements from the front of the queue.
+    //3. Priority Queue can be used to insert and delete elements from the back of the queue.
+
+    priority_queue<int> pq; // Declaration of priority queue // Max Heap
+    pq.push(1); // Adding element to the priority queue {1}
+    pq.push(2); // Adding element to the priority queue {2,1}
+    pq.push(3); // Adding element to the priority queue {3,2,1}
+    pq.push(4); // Adding element to the priority queue {4,3,2,1}
+    pq.emplace(5); // Adding element to the priority queue {5,4,3,2,1}
+
+    cout << pq.top() << endl; // Returns the top element of the priority queue
+    pq.pop(); // Deleting the top element of the priority queue
+
+    cout << pq.size() << endl; // Returns the size of the priority queue
+
+    cout << pq.empty() << endl; // Returns true if the priority queue is empty else false
+
+
+
+    //Priority Queue to store the minimum element at the top of the queue
+    priority_queue<int, vector<int>, greater<int>> pq1;  // Min Heap
+    pq1.push(1); // Adding element to the priority queue {1}
+    pq1.push(2); // Adding element to the priority queue {1,2}
+    pq1.emplace(3); // Adding element to the priority queue {1,2,3}
+
+    pq1.top(); // Returns the top element of the priority queue
+}
+
+
+void explainSet(){
+    //Set is a container that stores unique elements in a specific order. It is defined in the <set> header file.
+    //Set is a container that stores unique elements in a specific order. It is similar to vector but has the following advantages over vector:
+    //1. Set can grow and shrink in size dynamically.
+    //2. Set can be used to insert and delete elements from the set.
+    //3. Set can be used to insert and delete elements from the beginning and end of the set.
+
+    set<int> s; // Declaration of set
+    s.insert(1); // Adding element to the set {1}
+    s.insert(2); // Adding element to the set {1,2}
+    s.insert(3); // Adding element to the set {1,2,3}
+    s.insert(4); // Adding element to the set {1,2,3,4}
+    s.emplace(5); // Adding element to the set {1,2,3,4,5}
+
+    cout << s.size() << endl; // Returns the size of the set
+
+    cout << s.empty() << endl; // Returns true if the set is empty else false
 
 }
