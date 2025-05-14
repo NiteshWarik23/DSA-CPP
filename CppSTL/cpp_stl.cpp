@@ -15,6 +15,8 @@
 #include <stack> // for stack
 #include <queue> // for queue
 #include <set> // for set
+#include <unordered_set> // for unsorted set
+#include <map> // for map
 using namespace std;
 
 //Functions
@@ -380,7 +382,8 @@ void explainPriorityQueue(){
     pq1.top(); // Returns the top element of the priority queue
 }
 
-
+// Stores unique elements in sorted order
+// Time Complexity of set is O(log n) for all operations.
 void explainSet(){
     //Set is a container that stores unique elements in a specific order. It is defined in the <set> header file.
     //Set is a container that stores unique elements in a specific order. It is similar to vector but has the following advantages over vector:
@@ -395,8 +398,161 @@ void explainSet(){
     s.insert(4); // Adding element to the set {1,2,3,4}
     s.emplace(5); // Adding element to the set {1,2,3,4,5}
 
+    //Functionality of insert in vector, can be used also
+    // it only increases efficiency of the code
+
+    //{1,2,3,4,5}
+    auto it = s.find(3); // Finding the element in the set
+
+    //{1,2,3,4,5}
+    auto it1 = s.find(6); // The returns st.end() if the element is not found in the set
+
+    //{1,2,3,4,5}
+    s.erase(4); // Deleting the element from the set // Delets 4 and maintains the order of the set
+
+    //Count Function
+    int count = s.count(3); // Returns the number 1 if the element is found in the set else 0
+
+    // Using iterator to erase the element form the set
+    auto it2 = s.find(3);
+    s.erase(it2);
+
+    //Using start and end function to erase the element from the set
+    //{1,2,3,4,5}
+    auto it3 = s.find(2);
+    auto it4 = s.find(4);
+    s.erase(it3, it4); // {1,4,5}
+
+    //lower_bound and upper_bound function works in the same way as in vector
+    auto it = s.lower_bound(3); // Returns first element which is greater than or equal to 3
+    auto it1 = s.upper_bound(3); // Returns first element which is greater than 3
+
+
     cout << s.size() << endl; // Returns the size of the set
 
     cout << s.empty() << endl; // Returns true if the set is empty else false
 
+}
+
+//Similar to set but allows duplicate elements
+//It will store the elements in sorted order
+void explainMultiSet(){
+    //Multiset is a container that stores multiple elements in a specific order. It is defined in the <set> header file.
+    //Multiset is a container that stores multiple elements in a specific order. It is similar to set but has the following advantages over set:
+    //1. Multiset can grow and shrink in size dynamically.
+    //2. Multiset can be used to insert and delete elements from the multiset.
+    //3. Multiset can be used to insert and delete elements from the beginning and end of the multiset.
+
+    multiset<int> ms; // Declaration of multiset
+    ms.insert(1); // Adding element to the multiset {1}
+    ms.insert(1); // Adding element to the multiset {1,1}
+    ms.insert(1); // Adding element to the multiset {1,1,1}
+    ms.insert(2); // Adding element to the multiset {1,2}
+    ms.insert(3); // Adding element to the multiset {1,2,3}
+    ms.insert(4); // Adding element to the multiset {1,2,3,4}
+    ms.emplace(5); // Adding element to the multiset {1,2,3,4,5}
+
+    // Erase Function
+    // If we erase 1 from the set it will delete all the 1 from the set
+    ms.erase(1);
+
+    //Count Function
+    int count = ms.count(1); // Returns the number of times the element is found in the multiset
+
+    //How to only erase one element from the multiple 1's in the set
+    ms.erase(ms.find(1));
+
+    ms.erase(ms.find(1), ms.find(1)); // Deleting the first two 1's from the multiset
+
+    cout << ms.size() << endl; // Returns the size of the multiset
+
+    cout << ms.empty() << endl; // Returns true if the multiset is empty else false
+
+    //Rest all the funstions are similar to set
+
+}
+
+// It stored unique be does not store in sorted order
+// Time Complexity of unordered set is O(1) for all operations.
+//lower_bound and upper_bound function does not work 
+// rest all the functions are similar to set
+// It does not stores in any particular order it has a better complexity than set in most cases, except some when collision occurs.
+void explainUnorderedSet(){
+    //Unordered Set is a container that stores unique elements in a specific order. It is defined in the <unordered_set> header file.
+    //Unordered Set is a container that stores unique elements in a specific order. It is similar to set but has the following advantages over set:
+    //1. Unordered Set can grow and shrink in size dynamically.
+    //2. Unordered Set can be used to insert and delete elements from the unordered set.
+    //3. Unordered Set can be used to insert and delete elements from the beginning and end of the unordered set.
+
+    unordered_set<int> us; // Declaration of unordered set
+    us.insert(1); // Adding element to the unordered set {1}
+    us.insert(2); // Adding element to the unordered set {1,2}
+    us.insert(3); // Adding element to the unordered set {1,2,3}
+    us.insert(4); // Adding element to the unordered set {1,2,3,4}
+    us.emplace(5); // Adding element to the unordered set {1,2,3,4,5}
+
+    cout << us.size() << endl; // Returns the size of the unordered set
+
+    cout << us.empty() << endl; // Returns true if the unordered set is empty else false
+
+}
+
+
+// It stores elements in Key and Value pair
+// Key is unique and value can be duplicate
+//Key can be of any datatype 
+//Map store unique keys in sorted order // Similar to set
+void explainMap(){
+    map<int, int> m; // Declaration of map
+    map<pair<int,int>, int> m1; // Declaration of map with pair as key
+    map<int, pair<int,int>> m2; // Declaration of map with pair as value
+
+    // To store the value in the map
+    m[1] = 2; // Adding element to the map {1,2}
+    m.emplace(2,3); // Adding element to the map {1,2},{2,3}
+
+    m.insert({3,4}); // Adding element to the map {1,2},{2,3},{3,4}
+
+    // map<pair<int,int>, int> m1;
+    m1[{2,3}] = 4; // Adding element to the map {2,3} -> 4
+
+
+    for(auto it : m){
+        cout << it.first << " " << it.second << endl; // 1 2 2 3 3 4
+    }
+
+    cout << m[1]; // 2 // The at() function returns the value of the given key in the map
+    cout << m[5]; // 0 // If the key is not found in the map it will return 0
+
+    auto it = m.find(2); 
+    //cout << *(it).second; // the .second helps to access the value of the key
+
+    auto it = m.find(5); // The returns m.end() if the key is not found in the map
+
+    auto  it =m.lower_bound(2);
+
+    auto it = m.upper_bound(2);
+    
+}
+
+
+
+void explainMultiMap(){
+    //Everything is same as map but it allows duplicate keys and stores them in sorted order
+    multimap<int,int> m; // Declaration of multimap
+
+
+}
+
+
+void explainunorderedMap(){
+    // Similar to set and unordered set difference
+    // Unique Keys but not sorted
+    // Time Complexity of unordered map is O(1) for all operations.
+    // Worst case it is O(n).
+}
+
+
+void explainExtra(){
+    
 }
