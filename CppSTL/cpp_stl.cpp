@@ -17,6 +17,7 @@
 #include <set> // for set
 #include <unordered_set> // for unsorted set
 #include <map> // for map
+#include <algorithm> // for sort
 using namespace std;
 
 //Functions
@@ -552,7 +553,48 @@ void explainunorderedMap(){
     // Worst case it is O(n).
 }
 
+bool comp(pair<int,int> a, pair<int,int> b){
+    if(a.second < b.second){
+        return true;
+    }else if (a.second > b.second){
+        return false;
+    }
+    else if(a.second == b.second){
+        if(a.first > b.second){
+            return true;
+        }
+    }
+    return false;
+}
 
 void explainExtra(){
-    
+    //sort(a,a + n);
+    //sort(v.begin(),v.end());
+
+    //sort(a+2,a+4);
+
+   // sort(a,a+n,greater<int>()); // Sort in descending order
+
+    pair<int,int> a[] = {{1,2},{2,1},{4,1}};
+
+    //sort it according to second element
+    //if second element is same then sort it according to first element
+    // but in descending order
+
+    //sort(a,a+n,comp);
+
+
+    int num = 7;
+    int count = __builtin_popcount(num);
+
+    long long num = 7;
+    long long count = __builtin_popcountll(num);
+
+    string s= "123";
+    do{
+        cout << s << endl;
+    }while (next_permutation(s.begin(),s.end())); // Will give all the permutation for the string
+
+    //int maxi = *max_element(a,a+n); // Will give the maximum element in the array
+
 }
